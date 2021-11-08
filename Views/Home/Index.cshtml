@@ -1,0 +1,55 @@
+﻿@model IEnumerable<MVCWebApplication.Models.Users>
+@{
+    ViewBag.Title = "This is Home Page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form action="/Home/AddUser" method="POST">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">First Name</label>
+                    <input type="text" class="form-control" name="fname" >
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Last Name</label>
+                    <input type="text" class="form-control" name="lname">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email Name</label>
+                    <input type="text" class="form-control" name="email" >
+                </div>
+              <input type="submit"  class="btn btn-primary" />
+            </form>
+        </div>
+        <div class="col-md-6">
+
+            <table class="table">
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+                @foreach (var list in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(ModelItem => list.id)</td>
+                        <td>@Html.DisplayFor(ModelItem => list.fname)</td>
+                        <td>@Html.DisplayFor(ModelItem => list.lname)</td>
+                        <td>@Html.DisplayFor(ModelItem => list.email)</td>
+                        <td><a href="/Home/Edit?id=@Html.DisplayFor(ModelItem => list.id)">Edit</a>
+                            <a href="/Home/Delete?id=@Html.DisplayFor(ModelItem => list.id)">Delete</a></td>
+                    </tr>
+                }
+
+            </table>
+
+
+           
+
+         
+        </div>
+    </div>
+</div>
